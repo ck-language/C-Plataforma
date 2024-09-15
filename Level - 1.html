@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <title>Grammar Level 1</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #ffffff);
+            color: white;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .button-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-gap: 30px;
+            justify-content: center;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        .grammar-button {
+            background-color: #5660d3;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 20px;
+            height: 70px;
+            padding: 0 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+            word-break: break-word;
+        }
+
+        .grammar-button:hover {
+            transform: translateY(-10px) scale(1.05);
+            background-color: #66ccff;
+            color: #0033cc;
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        .grammar-button:active {
+            transform: translateY(0);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo {
+            margin-top: 1;
+            width: 200px;
+            height: auto;
+        }
+
+        /* Estilo dos botões fixos */
+        .navigation-buttons {
+            position: fixed;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+        }
+
+        .home-button, .back-button, .refresh-button {
+            display: inline-block;
+            padding: 15px;
+            color: white;
+            border: none;
+            border-radius: 30%;
+            text-decoration: none;
+            font-size: 24px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .home-button {
+            background-color: #4CAF50;
+        }
+
+        .home-button:hover {
+            background-color: #45a049;
+        }
+
+        .back-button {
+            background-color: #5660d3;
+        }
+
+        .back-button:hover {
+            background-color: #002299;
+        }
+
+        .refresh-button {
+            background-color: #ff9800;
+        }
+
+        .refresh-button:hover {
+            background-color: #e68900;
+        }
+        .grammar-button {
+            text-decoration: none; /* Remove a linha sob o texto */
+        }
+    </style>
+</head>
+<body>
+    <img src="C:\Users\easyc\Downloads\logo_CK_Prancheta 1 (1).png" alt="Logo" class="logo">
+
+    <div class="button-container">
+        <button class="grammar-button" onclick="window.location.href='file:///C:/Users/easyc/Desktop/plat/level%201/Pronuns.html';">Pronuns</button>
+        <button class="grammar-button" onclick="window.location.href='file:///C:/Users/easyc/Desktop/plat/level%201/Verb%20to%20be.html';">Verb to be</button>
+        <button class="grammar-button" onclick="window.location.href='file:///C:/Users/easyc/Desktop/plat/level%201/do%20ou%20does.html';">do ou does</button>
+        <button class="grammar-button" onclick="window.location.href='file:///C:/Users/easyc/Desktop/plat/level%201/Don%27t%20ou%20doesn%27t.html';">Don't ou doesn't</button>
+        <button class="grammar-button" onclick="window.location.href='file:///C:/Users/easyc/Desktop/plat/level%201/s%20or%20es.html';">s or es</button>
+        <button class="grammar-button" onclick="window.location.href='file:///C:/Users/easyc/Desktop/plat/level%201/s%2C%20es%20or%20ies.html';">s, es or ies</button>
+        <a href="file:///C:\Users\easyc\Desktop\plat\level 1\Simple present.html" class="grammar-button">Present Simple</a>
+    </div>
+
+    <!-- Botões de navegação fixos -->
+    <div class="navigation-buttons">
+        <a href="javascript:history.back()" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+        
+    </div>
+</body>
+</html>

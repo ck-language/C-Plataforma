@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gamified Levels</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column; /* Coloca o título e o conteúdo em coluna */
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(135deg, #ffffff, #ffffff); /* Fundo com gradiente azul */
+            color: white;
+        }
+
+        h1 {
+            font-size: 64px;
+            margin-bottom: 40px; /* Espaço entre o título e os retângulos */
+            text-align: center;
+            color: #0033cc;
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.5); /* Sombra para dar profundidade */
+            letter-spacing: 8px; /* Espaçamento entre as letras */
+        }
+
+        .container {
+            
+            display: grid;
+            grid-template-columns: repeat(2, 150px); /* 2 colunas com 150px de largura cada */
+            gap: 20px; /* Espaço entre os retângulos */
+        }
+
+        .rectangle {
+            width: 150px;
+            height: 70px;
+            background-color: #0033cc; /* Azul escuro */
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 28px;
+            border-radius: 12px;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); /* Sombra suave */
+            transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            text-decoration: none; /* Remove o sublinhado do link */
+        }
+
+        /* Efeito de hover para gamificação */
+        .rectangle:hover {
+            transform: translateY(-10px) scale(1.05); /* Eleva e aumenta um pouco ao passar o mouse */
+            background-color: #66ccff; /* Azul claro ao passar o mouse */
+            color: #0033cc; /* Azul escuro para o texto */
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.5); /* Sombra mais pronunciada */
+        }
+
+        .rectangle:active {
+            transform: translateY(0); /* Remove a elevação ao clicar */
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.5); /* Sombra mais suave ao clicar */
+        }
+    </style>
+</head>
+<body>
+  
+  
+
+<h1>LEVELS</h1>
+
+<div class="container">
+    <a href="Level - 1.html" class="rectangle">1</a>
+    <a href="Level - 2.html" class="rectangle">2</a>
+    <a href="Level - 3.html" class="rectangle">3</a>
+    <a href="Level - 4.html" class="rectangle">4</a>
+
+</div>
+
+</body>
+</html>

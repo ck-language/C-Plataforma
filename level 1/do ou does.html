@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <title>Atividade de Pronomes</title>
+    <style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background: #ffffff; /* Branco agora */
+        color: #5660d3; /* Azul da sua marca */
+        text-align: center;
+    }
+    h1 {
+        font-size: 36px;
+        margin-bottom: 10px;
+        color: #5660d3; /* Azul agora */
+        letter-spacing: 2px;
+    }
+    /* Container principal */
+    .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: rgba(86, 96, 211, 0.1); /* Azul da marca com opacidade */
+        padding: 20px;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    }
+    /* Barra de progresso */
+    .progress-container {
+        width: 100%;
+        background-color: #5660d3; /* Azul agora */
+        border-radius: 25px;
+        margin-bottom: 20px;
+        height: 25px;
+        overflow: hidden;
+    }
+    .progress-bar {
+        height: 100%;
+        width: 0;
+        background-color: #b41815; /* Vermelho da sua marca */
+        transition: width 0.3s ease-in-out;
+    }
+    .question {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+    .options {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+    }
+    .option {
+        background-color: #5660d3; /* Azul agora */
+        color: #ffffff; /* Branco agora */
+        padding: 15px;
+        margin: 10px 0;
+        border: none;
+        border-radius: 8px;
+        font-size: 24px; /* Aumenta o tamanho da fonte */
+        font-weight: bold; /* Negrito */
+        cursor: pointer;
+        transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    
+    .option:active {
+        transform: scale(1);
+    }
+    .result-screen {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .result-screen h2 {
+        font-size: 32px;
+        color: #5660d3; /* Azul agora */
+        margin-bottom: 20px;
+    }
+    .result-summary {
+        font-size: 24px;
+        color: #5660d3; /* Azul agora */
+    }
+    .result-percentage {
+        font-size: 28px;
+        color: #5660d3; /* Azul agora */
+        margin-top: 10px;
+    }
+    .buttons {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin-top: 20px;
+    }
+    .buttons button {
+        margin: 0 10px; /* Adiciona um espaçamento de 10px em cada lado dos botões */
+    }
+    .retry-button, .home-button {
+        padding: 15px 30px;
+        font-size: 20px;
+        background-color: #5660d3; /* Azul agora */
+        color: #ffffff; /* Branco agora */
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    .retry-button:hover, .home-button:hover {
+        background-color: #b41815; /* Vermelho da sua marca */
+        color: white;
+    }
+    .detailed-results {
+        display: none;
+        text-align: left;
+        margin-top: 20px;
+    }
+    .correct {
+        color: #00ff00;
+    }
+    .incorrect {
+        color: #ff0000;
+    }
+    .result-screen .buttons {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        margin-top: 20px;
+    }
+    .option.correct {
+        background-color: #00ff00; /* Verde */
+        color: white;
+    }
+    .option.incorrect {
+        background-color: #ff0000; /* Vermelho */
+        color: white;
+    }
+      
+      .option.correct-answer {
+    background-color: #00ff00; /* Verde */
+    color: white;
+}
+
+    /* Estilo dos botões de navegação */
+    .nav-buttons-container {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 20px;
+        }
+
+        .back-button, .refresh-button, .home-nav-button {
+            display: inline-block;
+            padding: 20px;
+            color: #ffffff;
+            border: none;
+            border-radius: 15%;
+            text-decoration: none;
+            font-size: 24px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .back-button {
+            background-color: #5660d3;
+        }
+
+        .refresh-button {
+            background-color: #5660d3;
+        }
+
+
+</style>
+
+</head>
+<body>
+    <!-- Container principal -->
+    <div class="container">
+        <div class="progress-container">
+            <div id="progress-bar" class="progress-bar"></div>
+        </div>
+        <div id="quiz-section">
+            <h1 id="question"></h1>
+            <div class="options" id="options"></div>
+        </div>
+    </div>
+
+    <!-- Tela de resultados -->
+    <div class="result-screen" id="result-screen">
+        <h2>Quiz Completo!</h2>
+        <div class="result-summary" id="result-summary"></div>
+        <div class="result-percentage" id="result-percentage"></div>
+        <div class="buttons">
+            <button class="retry-button" onclick="retryQuiz()">Tentar Novamente</button>
+            <button class="home-button" onclick="window.location.href='file:///C:/Users/easyc/Desktop/plat/Level%20-%201.html'">Home</button>
+        </div>
+        <div class="detailed-results" id="detailed-results"></div>
+    </div>
+
+      <!-- Botões de navegação fixados no rodapé -->
+      <div class="nav-buttons-container">
+        <a href="javascript:history.back()" class="back-button">
+            <i class="fas fa-arrow-left"></i>
+        </a>
+        <a href="javascript:location.reload()" class="refresh-button">
+            <i class="fas fa-sync-alt"></i>
+        </a>
+
+    </div>
+
+    <script>
+const questions = [
+    { 
+        question: "______ you like ice cream?", 
+        options: ["Do", "Does"], 
+        correctAnswer: 0 
+    },
+    { 
+        question: "______ he play football?", 
+        options: ["Do", "Does"], 
+        correctAnswer: 1 
+    },
+    { 
+        question: "______ they eat breakfast?", 
+        options: ["Do", "Does"], 
+        correctAnswer: 0 
+    },
+    { 
+        question: "______ she have a cat?", 
+        options: ["Do", "Does"], 
+        correctAnswer: 1 
+    },
+    { 
+        question: "______ we go to school?", 
+        options: ["Do", "Does"], 
+        correctAnswer: 0 
+    },
+    { 
+        question: "______ it rain today?", 
+        options: ["Do", "Does"], 
+        correctAnswer: 1 
+    },
+    { 
+        question: "______ you see the movie?", 
+        options: ["Do", "Does"], 
+        correctAnswer: 0 
+    },
+    { 
+        question: "______ she live here?", 
+        options: ["Do", "Does"], 
+        correctAnswer: 1 
+    },
+    { 
+        question: "______ they speak English?", 
+        options: ["Do", "Does"], 
+        correctAnswer: 0 
+    },
+    { 
+        question: "______ he work on Sundays?", 
+        options: ["Do", "Does"], 
+        correctAnswer: 1 
+    },
+    { 
+        question: "______ you understand?", 
+        options: ["Do", "Does"], 
+        correctAnswer: 0 
+    },
+    { 
+        question: "______ it snow in winter?", 
+        options: ["Do", "Does"], 
+        correctAnswer: 1 
+    },
+    { 
+        question: "______ she cook dinner?", 
+        options: ["Do", "Does"], 
+        correctAnswer: 1 
+    },
+    { 
+        question: "______ we need a ticket?", 
+        options: ["Do", "Does"], 
+        correctAnswer: 0 
+    },
+    { 
+        question: "______ they play games?", 
+        options: ["Do", "Does"], 
+        correctAnswer: 0 
+    }
+];
+
+
+
+
+
+        let currentQuestion = 0;
+        let score = 0;
+        let userAnswers = [];
+
+        function loadQuestion() {
+            const questionElement = document.getElementById('question');
+            const optionsElement = document.getElementById('options');
+            const progressBar = document.getElementById('progress-bar');
+
+            // Carrega a pergunta atual
+            questionElement.textContent = questions[currentQuestion].question;
+
+            // Atualiza a barra de progresso
+            const progressPercentage = ((currentQuestion + 1) / questions.length) * 100;
+            progressBar.style.width = progressPercentage + '%';
+
+            // Limpa as opções anteriores
+            optionsElement.innerHTML = '';
+
+            // Cria as opções
+            questions[currentQuestion].options.forEach((option, index) => {
+                const button = document.createElement('button');
+                button.classList.add('option');
+                button.textContent = option;
+                button.onclick = () => checkAnswer(index, button);
+                optionsElement.appendChild(button);
+            });
+        }
+
+        function checkAnswer(selectedIndex, selectedButton) {
+    const correctIndex = questions[currentQuestion].correctAnswer;
+
+    // Armazena a resposta do usuário
+    userAnswers.push({
+        question: questions[currentQuestion].question,
+        selected: selectedIndex,
+        correct: correctIndex
+    });
+
+    // Atualiza a cor do botão selecionado
+    if (selectedIndex === correctIndex) {
+        selectedButton.classList.add('correct');
+        score++;
+    } else {
+        selectedButton.classList.add('incorrect');
+        
+        // Adiciona a classe 'correct-answer' ao botão da resposta correta
+        const options = document.querySelectorAll('.option');
+        options.forEach((button, index) => {
+            if (index === correctIndex) {
+                button.classList.add('correct-answer');
+            }
+        });
+    }
+
+    // Desativa todos os botões após a resposta
+    const options = document.querySelectorAll('.option');
+    options.forEach(button => button.disabled = true);
+
+    // Passa para a próxima pergunta ou termina o quiz
+    currentQuestion++;
+    if (currentQuestion < questions.length) {
+        setTimeout(loadQuestion, 1000); // Espera 1 segundo antes de carregar a próxima pergunta
+    } else {
+        setTimeout(showResults, 1000); // Espera 1 segundo antes de mostrar os resultados
+    }
+}
+
+
+        function showResults() {
+            const resultScreen = document.getElementById('result-screen');
+            const quizSection = document.querySelector('.container');
+            const resultSummary = document.getElementById('result-summary');
+            const resultPercentage = document.getElementById('result-percentage');
+
+            // Exibe o resultado
+            const percentage = (score / questions.length) * 100;
+            resultSummary.textContent = `Você acertou ${score} de ${questions.length} perguntas.`;
+            resultPercentage.textContent = `Percentual: ${percentage.toFixed(2)}%`;
+
+            // Exibe a tela de resultados e esconde a seção do quiz
+            quizSection.style.display = 'none';
+            resultScreen.style.display = 'flex';
+        }
+
+        function retryQuiz() {
+            // Reseta o quiz
+            currentQuestion = 0;
+            score = 0;
+            userAnswers = [];
+            document.getElementById('result-screen').style.display = 'none';
+            document.querySelector('.container').style.display = 'flex';
+            loadQuestion();
+        }
+
+        // Inicializa o quiz
+        loadQuestion();
+    </script>
+</body>
+</html>

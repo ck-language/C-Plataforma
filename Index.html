@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ck Language Plataforma</title>
+     <!-- Favicon em formato .ico -->
+     <link rel="icon" href="C:\Users\easyc\Desktop\plat\0c9b224840105134caee45ea62bd13a6.ico\favicon.ico" type="image/x-icon">
+    
+     <!-- Favicon em formato .png (caso prefira usar .png) -->
+     <!-- <link rel="icon" href="caminho/para/seu/favicon.png" type="image/png"> -->
+    <style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #ffffff;
+        margin: 0;
+        overflow: hidden;
+        flex-direction: column;
+    }
+
+    /* Logo container */
+    .logo {
+        margin-bottom: 20px;
+        opacity: 0;
+        animation: fadeInAndGrow 3s ease-in-out forwards;
+    }
+
+    /* Animating the logo: fade-in and grow to 300px width */
+    @keyframes fadeInAndGrow {
+        0% {
+            opacity: 0;
+            width: 0;
+        }
+        100% {
+            opacity: 1;
+            width: 300px; /* Ajuste aqui para um tamanho menor */
+        }
+    }
+
+    /* Styling for the logo image */
+    .logo img {
+        width: 100%; /* A imagem ocupará 100% da largura do contêiner .logo */
+        max-width: 300px; /* Define o tamanho máximo da imagem para 300px */
+        height: auto; /* Mantém a proporção da imagem */
+    }
+
+    .loader {
+        display: flex;
+        gap: 20px;
+        perspective: 1000px;
+    }
+
+    .cube {
+        width: 40px;
+        height: 40px;
+        background: linear-gradient(45deg, #ff3cac, #784ba0, #2b86c5);
+        background-size: 200% 200%;
+        animation: rotate 2s infinite ease-in-out, colorShift 4s infinite;
+        transform-style: preserve-3d;
+    }
+
+    .cube::before, .cube::after {
+        content: '';
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        background: inherit;
+    }
+
+    .cube::before {
+        transform: rotateY(90deg) translateZ(20px);
+    }
+
+    .cube::after {
+        transform: rotateX(90deg) translateZ(20px);
+    }
+
+    .cube:nth-child(1) {
+        animation-delay: 0s;
+    }
+
+    .cube:nth-child(2) {
+        animation-delay: 0.3s;
+    }
+
+    .cube:nth-child(3) {
+        animation-delay: 0.6s;
+    }
+
+    @keyframes rotate {
+        0%, 100% {
+            transform: rotate3d(0, 0, 0, 0deg);
+        }
+        50% {
+            transform: rotate3d(1, 1, 0, 360deg);
+        }
+    }
+
+    @keyframes colorShift {
+        0%, 100% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+    }
+</style>
+</head>
+<body>
+<!-- Logo image with fade-in and grow animation -->
+<div class="logo">
+    <img src="C:\Users\easyc\Downloads\logo_CK_Prancheta 1 (1).png" alt="CK Logo">
+</div>
+
+<!-- 3D Cube Loader -->
+<div class="loader">
+    <div class="cube"></div>
+    <div class="cube"></div>
+    <div class="cube"></div>
+</div>
+
+<script>
+    // Control the loader and hide it after content is "loaded".
+    document.addEventListener("DOMContentLoaded", function() {
+        // Simulate loading time
+        setTimeout(function() {
+            document.querySelector('.loader').style.display = 'none';
+            // Redirect to the content page after the loader
+            window.location.href = 'Levels.html'; // Atualize para o nome correto da página de conteúdo
+        }, 5000); // Ajuste o tempo conforme necessário
+    });
+</script>
+</body>
+</html>
